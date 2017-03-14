@@ -1,0 +1,67 @@
+<ion-header color="primary">
+
+  <ion-navbar color="primary">
+    <ion-title>Gestion du carburant</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-grid class="topContainer">
+    <ion-row class="headline">
+      <ion-col text-center>
+        <ion-label class="lbl">mois</ion-label>
+      </ion-col>
+      <ion-col text-center>
+        <ion-label class="lbl">conso moyenne</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="valueline">
+      <ion-col text-center>
+        <ion-label class="value">{{ conso.totalMois }}</ion-label>
+      </ion-col>
+      <ion-col text-center>
+        <ion-label class="value">{{ conso.consoMoy }}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headline">
+      <ion-col text-center>
+        <ion-label class="lbl">coût total</ion-label>
+      </ion-col>
+      <ion-col text-center>
+        <ion-label class="lbl">prix moyen</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="valueline">
+      <ion-col text-center>
+        <ion-label class="value">{{ conso.total }}</ion-label>
+      </ion-col>
+      <ion-col text-center>
+        <ion-label class="value">{{ conso.prixMoy }}</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <form #f="ngForm" (ngSubmit)="onAddItem(f)">
+    <ion-item>
+      <ion-label floating>Date</ion-label>
+      <ion-input type="date" ngModel required name="date"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Coût</ion-label>
+      <ion-input type="number" ngModel required name="cost"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Quantité</ion-label>
+      <ion-input type="number" ngModel required name="qte"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Trip total</ion-label>
+      <ion-input type="number" ngModel required name="trip"></ion-input>
+    </ion-item>
+    <br>
+    <div text-center>
+      <button class="submitBtn" ion-button outline type="submit" text-center [disabled]="!f.valid">VALIDER</button>
+    </div>
+  </form>
+</ion-content>

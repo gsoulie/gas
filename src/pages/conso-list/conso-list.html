@@ -1,0 +1,66 @@
+<ion-header color="primary">
+
+  <ion-navbar color="primary">
+    <ion-title>Gestion du carburant</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="card" *ngFor="let c of consos; let i = index">
+      <ion-row class="row" center>
+        <ion-col class="col" text-center>
+          <ion-label>{{ c.date }}</ion-label>
+        </ion-col>
+        <ion-col class="col" text-center>
+          <ion-label>{{ c.cost }}€</ion-label>
+        </ion-col>
+        <ion-col class="col" text-center>
+          <ion-label>{{ c.trip }}km</ion-label>
+        </ion-col>
+        <ion-col class="col" text-center>
+          <ion-label>{{ c.conso }}L</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row" center>
+        <ion-col class="col" text-center>
+          <ion-label>{{ c.trip }}km</ion-label>
+        </ion-col>
+        <ion-col class="col" text-center>
+          <ion-label>{{ c.qte }}L</ion-label>
+        </ion-col>
+        <ion-col class="col" text-center>
+          <ion-label>{{ c.price }}€</ion-label>
+        </ion-col>
+
+      </ion-row>
+    </ion-card>
+    
+  <!--<ion-list>
+    <ion-item no-lines *ngFor="let c of consos; let i = index">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label>{{ c.date }}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{ c.cost }}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{ c.trip }}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>{{ c.trip }}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{ c.qte }}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{ c.price }}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>-->
+</ion-content>
