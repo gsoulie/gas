@@ -1,3 +1,4 @@
+import { TestPage } from './../pages/test/test';
 import { TabsPage } from './../pages/tabs/tabs';
 import { ConsoListPage } from './../pages/conso-list/conso-list';
 import { AuthService } from './../providers/auth';
@@ -12,7 +13,8 @@ import { MyApp } from './app.component';
     MyApp,
     FormPage,
     ConsoListPage,
-    TabsPage
+    TabsPage,
+    TestPage
   ],
   imports: [
     IonicModule.forRoot(MyApp,{tabsPlacement: "top"})
@@ -22,7 +24,8 @@ import { MyApp } from './app.component';
     MyApp,
     FormPage,
     ConsoListPage,
-    TabsPage
+    TabsPage,
+    TestPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Gas, AuthService]
 })
