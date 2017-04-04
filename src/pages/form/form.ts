@@ -1,3 +1,5 @@
+import { LoginPage } from './../login/login';
+import { AuthService } from './../../providers/auth';
 import { Gas } from './../../providers/gas';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -11,7 +13,8 @@ export class FormPage {
   conso = {totalMois: "0.00€", consoMoy: "8.46L", total: "128.43€", prixMoyen: "1.409€"};
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private gasService: Gas) {}
+              private gasService: Gas, private authService: AuthService,
+              private nav: NavController) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FormPage');
@@ -30,6 +33,11 @@ export class FormPage {
     
     this.gasService.addItem(val.date, val.cost, val.qte, val.trip, price);
     form.reset();
+  }
+
+  onLogout(){
+    this.authService.logout();
+		this.nav.setRoot(LoginPage);
   }
 
 }

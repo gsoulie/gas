@@ -1,0 +1,31 @@
+
+<ion-content padding class="content">
+<form #f="ngForm" (ngSubmit)="onSignup(f)">
+    <ion-list class="list">
+      <ion-item>
+        <ion-label floating>Mail</ion-label>
+        <ion-input
+          type="email"
+          ngModel
+          name="email"
+          required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input
+          type="password"
+          ngModel
+          name="password"
+          required></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-row>
+      <ion-col>
+        <button ion-button outline block type="submit" [disabled]="!f.valid">Signup</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button block (click)="onSignin(f)" [disabled]="!f.valid">Signin</button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
