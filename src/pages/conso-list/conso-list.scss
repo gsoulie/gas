@@ -1,12 +1,57 @@
 page-conso-list {
-    .card{
-        padding: 0;
+
+    .dateItem {
+        background-color: #E7E7E7;
     }
-    .row{
-        padding: 0;
-        height: 30px;
+    .dateSelector {
+        width: 50%;
+        color: #484848;
+        text-align: center;
     }
-    .col{
-        padding: 0;
+    .conso {
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        color: #F73037;
+        @font-face{
+            font-family: 'Roboto-Medium';
+            src: url('../../font/Roboto-Medium.ttf');
+            font-weight: normal;
+            font-style: normal;
+        }
+    }
+    .date {
+        color: #F73037;
+        font-size: 14px;
+    }
+    .mainItem {
+        color: #000000;
+        font-size: 14px;
+    }
+    .secondItem {
+        color: #ADADAD;
+        font-size: 14px;
+    }
+    .trip {
+        color: #ADADAD;
+        font-size: 14px;
+    }
+
+    ion-list {
+        >ion-item-sliding {
+            border-bottom: 1px solid color($colors, light);
+
+            .item,
+            &:last-child .item {
+            border:none;
+            margin:0;
+            }
+
+            .completed {
+                text-decoration: line-through;
+                font-style: italic;
+            }
+        }
     }
 }

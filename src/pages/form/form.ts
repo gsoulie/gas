@@ -1,4 +1,3 @@
-import { TestPage } from './../test/test';
 import { Gas } from './../../providers/gas';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -31,10 +30,6 @@ export class FormPage {
     
     this.gasService.addItem(val.date, val.cost, val.qte, val.trip, price);
     form.reset();
-  }
-
-  openTest(){
-    this.navCtrl.push(TestPage);
   }
 
 }

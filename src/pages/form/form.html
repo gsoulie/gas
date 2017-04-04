@@ -42,7 +42,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <button ion-button (click)="openTest()">test</button>
   <form #f="ngForm" (ngSubmit)="onAddItem(f)">
     <ion-item>
       <ion-label floating>Date</ion-label>
@@ -50,15 +49,15 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Coût</ion-label>
-      <ion-input type="number" ngModel required name="cost"></ion-input>
+      <ion-input ngModel required name="cost"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Quantité</ion-label>
-      <ion-input type="number" ngModel required name="qte"></ion-input>
+      <ion-input ngModel required name="qte"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Trip total</ion-label>
-      <ion-input type="number" ngModel required name="trip"></ion-input>
+      <ion-input ngModel required name="trip"></ion-input>
     </ion-item>
     <br>
     <div text-center>

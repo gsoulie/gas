@@ -19,11 +19,5 @@ export class ConsoListPage {
   }
   ionViewWillEnter(){
     this.consos = this.gasService.getItems();
-/*
-    this.consos = [
-      {date: "2017-01-01", cost: 21, qte: 16,  trip: 2115, price: 1.409,conso: 7.65},
-      {date: "2017-01-01", cost: 21, qte: 16,  trip: 2115, price: 1.409,conso: 8.32},
-      {date: "2017-01-01", cost: 21, qte: 16,  trip: 2115, price: 1.409,conso: 8.12}
-    ];*/
   }
 }

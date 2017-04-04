@@ -1,4 +1,5 @@
-import { TestPage } from './../pages/test/test';
+import { amountPipe } from './../pipe/amountPipe';
+import { datePipe } from './../pipe/datePipe';
 import { TabsPage } from './../pages/tabs/tabs';
 import { ConsoListPage } from './../pages/conso-list/conso-list';
 import { AuthService } from './../providers/auth';
@@ -14,7 +15,8 @@ import { MyApp } from './app.component';
     FormPage,
     ConsoListPage,
     TabsPage,
-    TestPage
+    datePipe,
+    amountPipe
   ],
   imports: [
     IonicModule.forRoot(MyApp,{tabsPlacement: "top"})
@@ -24,8 +26,7 @@ import { MyApp } from './app.component';
     MyApp,
     FormPage,
     ConsoListPage,
-    TabsPage,
-    TestPage
+    TabsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Gas, AuthService]
 })

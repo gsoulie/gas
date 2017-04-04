@@ -7,5 +7,6 @@ export class Conso{
                 public qte: number,
                 public trip: number,
                 public price: number,
-                public conso: number) {   }
+                public conso: number,
+                public partial: number) {   }
 }

@@ -15,17 +15,19 @@ export class Gas {
 
   addItem(date: string, cost: number, qte: number, trip: number, price: number){
     let conso = 0;
-    let oldMaxTrip = this.getMaxTrip() || 0;
+    let oldMaxTrip = this.getMaxTrip() < 0 ? 0 : this.getMaxTrip();
+    let partial = trip;
+    console.log("[--- debug ---] oldMaxTrip = " + oldMaxTrip + " / trip = " + trip);
     if(trip > oldMaxTrip){
-      let partial = trip - oldMaxTrip;
+      partial = trip - oldMaxTrip;
       if(partial > 0){
         conso = (qte/partial)*100;
       }
     } else {
       //TODO alerte le nouveau trip est inférieur au plus grand trip de la base
     }
-    
-    this.consos.push(new Conso(date,cost, qte, trip, price, conso));
+    console.log("[--- debug ---] partial = " + partial);
+    this.consos.push(new Conso(date,cost, qte, trip, price, conso, partial));
   }
 
   getItems(){ return this.consos.slice(); }

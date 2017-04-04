@@ -7,9 +7,11 @@
 
 <ion-content>
     <ion-card class="card" *ngFor="let c of consos; let i = index">
+
+      <!--
       <ion-row class="row" center>
         <ion-col class="col" text-center>
-          <ion-label>{{ c.date }}</ion-label>
+          <ion-label>{{ c.date | datePipe }}</ion-label>
         </ion-col>
         <ion-col class="col" text-center>
           <ion-label>{{ c.cost }}€</ion-label>
@@ -29,38 +31,29 @@
           <ion-label>{{ c.qte }}L</ion-label>
         </ion-col>
         <ion-col class="col" text-center>
-          <ion-label>{{ c.price }}€</ion-label>
+          <ion-label>{{ c.price | amountPipe }}€</ion-label>
         </ion-col>
-
       </ion-row>
+      -->
+
+       <ion-grid>
+      <ion-row>
+        <ion-col center>
+          <ion-row><p class="date">{{c.date | datePipe}}<p></ion-row>
+          <ion-row><p class="secondItem">{{c.trip}}km</p></ion-row>
+        </ion-col>
+        <ion-col center style="margin-left:10px">
+          <ion-row><p class="mainItem"><b>{{c.cost}}€</b></p></ion-row>
+          <ion-row><p class="secondItem">{{c.qte}}L</p></ion-row>
+        </ion-col>
+        <ion-col center>
+          <ion-row><p class="mainItem"><b>{{c.partial}}km</b></p></ion-row>
+          <ion-row><p class="secondItem">{{c.price | amountPipe:3 }}€</p></ion-row>
+        </ion-col>
+        <ion-col center>
+          <p class="conso"><b>{{c.conso | amountPipe:"2" }}</b></p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     </ion-card>
-    
-  <!--<ion-list>
-    <ion-item no-lines *ngFor="let c of consos; let i = index">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-label>{{ c.date }}</ion-label>
-          </ion-col>
-          <ion-col>
-            <ion-label>{{ c.cost }}</ion-label>
-          </ion-col>
-          <ion-col>
-            <ion-label>{{ c.trip }}</ion-label>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-label>{{ c.trip }}</ion-label>
-          </ion-col>
-          <ion-col>
-            <ion-label>{{ c.qte }}</ion-label>
-          </ion-col>
-          <ion-col>
-            <ion-label>{{ c.price }}</ion-label>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-  </ion-list>-->
 </ion-content>
