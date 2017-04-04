@@ -93,6 +93,8 @@ export class ConsoListPage {
           }
       ]
     });
-    actionSheet.present();
+    actionSheet.present().then(() => {
+      this.onRefresh();
+    });
   }
 }
