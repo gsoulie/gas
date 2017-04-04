@@ -1,6 +1,6 @@
 
 <ion-content padding class="content">
-<form #f="ngForm" (ngSubmit)="onSignup(f)">
+<form #f="ngForm">
     <ion-list class="list">
       <ion-item>
         <ion-label floating>Mail</ion-label>
@@ -21,7 +21,7 @@
     </ion-list>
     <ion-row>
       <ion-col>
-        <button ion-button outline block type="submit" [disabled]="!f.valid">Signup</button>
+        <button ion-button outline block (click)="onSignup(f)" [disabled]="!f.valid">Signup</button>
       </ion-col>
       <ion-col>
         <button ion-button block (click)="onSignin(f)" [disabled]="!f.valid">Signin</button>
