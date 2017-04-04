@@ -28,19 +28,38 @@ export class Gas {
     }
     console.log("[--- debug ---] partial = " + partial);
     this.consos.push(new Conso(date,cost, qte, trip, price, conso, partial));
+
+    this.save();
   }
 
-  getItems(){ return this.consos.slice(); }
+  getItems(){ 
+    return this.consos.slice();
+  }
 
   removeItems(index: number){
     this.consos.splice(index, 1);
+    this.save();
   }
 
   getMaxTrip() {
     return Math.max.apply(Math,this.consos.map(function(o){return o.trip;}));
   }
+
+  save(){
+    this.authService.getActiveUser().getToken()
+    .then((token: string) => {
+      this.storeData(token)
+      .subscribe(
+        () => {},
+        error => {
+          console.log("[--- error ---] " + error.json().error);
+        }
+      );
+    });
+  }
   
   storeData(token: string){
+    console.log("[--- storedata ---]...");
     const userId = this.authService.getActiveUser().uid;
     return this.http
       .put('https://geca-46351.firebaseio.com/' + userId + '/conso.json?auth=' + token, this.consos)
