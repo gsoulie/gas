@@ -9,7 +9,15 @@ import { NavController, NavParams, LoadingController, ActionSheetController, Ale
   templateUrl: 'conso-list.html'
 })
 export class ConsoListPage {
-  consos: Conso[];
+  consos: Conso[] = [];
+  month: any[] = [{id:1,text:'Janvier'},{id:2,text:'Février'},{id:3,text:'Mars'},{id:4,text:'Avril'},{id:5,text:'Mai'},
+  {id:6,text:'Juin'},{id:7,text:'Juillet'},{id:8,text:'Août'},{id:9,text:'Septembre'},{id:10,text:'Octobre'},
+  {id:11,text:'Novembre'},{id:12,text:'Décembre'}];
+
+  selectedYear: number = 0;
+  selectedMonth: number = 0;
+  currentDate: Date = new Date();
+  currentMonth = this.currentDate.getMonth()+1;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -19,16 +27,14 @@ export class ConsoListPage {
               private alertCtrl: AlertController,
               private actionSheetCtrl: ActionSheetController) {}
 
-  ionViewDidLoad() {
-    this.onRefresh();
-    //this.consos = this.gasService.getItems();
-  }
+  ionViewDidLoad() {this.onRefresh();}
+  ionViewWillEnter(){this.onRefresh();}
 
   onRefresh(){
-    const loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
+    this.consos = [];
+    const loading = this.loadingCtrl.create({content: 'Please wait...'});
 
+    // Get data from Firebase
     this.authService.getActiveUser().getToken()
     .then((token: string) => {
       this.gasService.fetchData(token)
@@ -36,7 +42,15 @@ export class ConsoListPage {
           (res: Conso[]) => {
             loading.dismiss();
             if (res) {
-              this.consos = res;
+              // Data filtering switch current month
+              var tempMonth = this.currentMonth < 10 ? "0" + this.currentMonth : this.currentMonth;
+              for(let i = 0 ; i < res.length; i++){
+                if(res[i].date.substring(5,7) == tempMonth){
+                  this.consos.push(res[i]);
+                  console.log("[--- add ---] " + JSON.stringify(res[i]));
+                }
+              }
+              //this.consos = res;
             } else {
               this.consos = [];
             }
@@ -49,10 +63,7 @@ export class ConsoListPage {
     });  
   }
 
-  ionViewWillEnter(){
-    this.consos = this.gasService.getItems();
-  }
-
+  // Open action menu
   onAction(c: Conso, i: number){
     let actionSheet = this.actionSheetCtrl.create({
      // title: 'Action',
@@ -96,5 +107,12 @@ export class ConsoListPage {
     actionSheet.present().then(() => {
       this.onRefresh();
     });
+  }
+
+  // Select month
+  onSelectMonth(_selectedItem){
+    this.consos = [];
+    this.currentMonth = _selectedItem;
+    this.onRefresh();
   }
 }

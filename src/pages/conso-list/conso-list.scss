@@ -1,7 +1,9 @@
 page-conso-list {
-
+    ion-option {
+        color: #ffffff;
+    }
     .dateItem {
-        background-color: #E7E7E7;
+        background-color: map-get($colors,dark);//#E7E7E7;
     }
     .dateSelector {
         width: 50%;

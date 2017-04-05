@@ -11,6 +11,14 @@
 </ion-header>
 
 <ion-content>
+  <ion-item no-lines class="dateItem">
+    <ion-select submitText="OK" cancelText="ANNULER" (ionChange)="onSelectMonth($event)" class="dateSelector" [(ngModel)]="currentMonth">
+      <ion-option *ngFor="let item of month" value="{{item.id}}">{{item.text}}</ion-option>
+    </ion-select>
+    <!--<ion-select submitText="OK" cancelText="ANNULER" (ionChange)="selectYear($event)" class="dateSelector">
+      <ion-option *ngFor="let y of years" value="{{y.yearId}}" selected="{{y.selected}}">{{y.label}}</ion-option>
+    </ion-select>-->
+  </ion-item>
     <ion-card class="card" *ngFor="let c of consos; let i = index" (click)="onAction(c,i)">
      <ion-grid>
       <ion-row>

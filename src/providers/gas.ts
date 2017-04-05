@@ -70,6 +70,7 @@ export class Gas {
 
   fetchData(token: string){
     const userId = this.authService.getActiveUser().uid;
+    //return this.http.get('https://geca-46351.firebaseio.com/' + userId + '/conso.json?&auth=' + token+'&orderBy="price"&equalTo="1.3891290920321184"')
     return this.http.get('https://geca-46351.firebaseio.com/' + userId + '/conso.json?auth=' + token)
       .map((response: Response) => {
         return response.json();
