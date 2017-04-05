@@ -7,12 +7,18 @@ import 'rxjs/Rx';
 @Injectable()
 export class Gas {
   consos: Conso[] = [];
-  test = [{date: "2017-01-01", cost: 21, qte: 16,  trip: 2999, price: 1.409,conso: 0},
-      {date: "2017-01-01", cost: 21, qte: 16,  trip: 2655, price: 1.409,conso: 0},
-      {date: "2017-01-01", cost: 21, qte: 16,  trip: 2833, price: 1.409,conso: 0}]
-
+ 
   constructor(private http: Http, private authService: AuthService) {  }
 
+  /**
+   * ADD NEW ENTRY
+   * 
+   * @param date 
+   * @param cost 
+   * @param qte 
+   * @param trip 
+   * @param price 
+   */
   addItem(date: string, cost: number, qte: number, trip: number, price: number){
     let conso = 0;
     let oldMaxTrip = this.getMaxTrip() < 0 ? 0 : this.getMaxTrip();
@@ -24,27 +30,38 @@ export class Gas {
         conso = (qte/partial)*100;
       }
     } else {
-      //TODO alerte le nouveau trip est inférieur au plus grand trip de la base
+      
     }
     console.log("[--- debug ---] partial = " + partial);
+    
+    // Add new object in dataset
     this.consos.push(new Conso(date,cost, qte, trip, price, conso, partial));
 
+    // Save dataset into Firebase
     this.save();
   }
 
-  getItems(){ 
-    return this.consos.slice();
-  }
-
+  /**
+   * REMOVE SELECTED ENTRY FROM DATASET
+   * @param index 
+   */
   removeItems(index: number){
-    this.consos.splice(index, 1);
+    this.consos.splice(index, 1); // Remove the selected entry from the dataset
+    
+    // Save the new dataset into Firebase
     this.save();
   }
 
+  /**
+   * GET THE MAX TRIP FROM DATASET
+   */
   getMaxTrip() {
     return Math.max.apply(Math,this.consos.map(function(o){return o.trip;}));
   }
 
+  /**
+   * SAVE FUNCTION
+   */
   save(){
     this.authService.getActiveUser().getToken()
     .then((token: string) => {
@@ -58,6 +75,11 @@ export class Gas {
     });
   }
   
+
+  /**
+   * STORE DATA INTO FIREBASE
+   * @param token 
+   */
   storeData(token: string){
     console.log("[--- storedata ---]...");
     const userId = this.authService.getActiveUser().uid;
@@ -68,6 +90,10 @@ export class Gas {
       });
   }
 
+  /**
+   * FETCH DATA FROM FIREBASE
+   * @param token 
+   */
   fetchData(token: string){
     const userId = this.authService.getActiveUser().uid;
     //return this.http.get('https://geca-46351.firebaseio.com/' + userId + '/conso.json?&auth=' + token+'&orderBy="price"&equalTo="1.3891290920321184"')

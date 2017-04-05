@@ -11,8 +11,8 @@ import { NavController, NavParams, LoadingController, ActionSheetController, Ale
 export class ConsoListPage {
   consos: Conso[] = [];
   month: any[] = [{id:1,text:'Janvier'},{id:2,text:'Février'},{id:3,text:'Mars'},{id:4,text:'Avril'},{id:5,text:'Mai'},
-  {id:6,text:'Juin'},{id:7,text:'Juillet'},{id:8,text:'Août'},{id:9,text:'Septembre'},{id:10,text:'Octobre'},
-  {id:11,text:'Novembre'},{id:12,text:'Décembre'}];
+                  {id:6,text:'Juin'},{id:7,text:'Juillet'},{id:8,text:'Août'},{id:9,text:'Septembre'},{id:10,text:'Octobre'},
+                  {id:11,text:'Novembre'},{id:12,text:'Décembre'}];
 
   selectedYear: number = 0;
   selectedMonth: number = 0;
@@ -30,6 +30,9 @@ export class ConsoListPage {
   ionViewDidLoad() {this.onRefresh();}
   ionViewWillEnter(){this.onRefresh();}
 
+  /**
+   * REFRESH DATASET
+   */
   onRefresh(){
     this.consos = [];
     const loading = this.loadingCtrl.create({content: 'Please wait...'});
@@ -63,7 +66,11 @@ export class ConsoListPage {
     });  
   }
 
-  // Open action menu
+  /**
+   * OPEN ACTION MENU
+   * @param c 
+   * @param i 
+   */
   onAction(c: Conso, i: number){
     let actionSheet = this.actionSheetCtrl.create({
      // title: 'Action',
@@ -109,7 +116,10 @@ export class ConsoListPage {
     });
   }
 
-  // Select month
+  /**
+   * SELECT MONTH
+   * @param _selectedItem 
+   */
   onSelectMonth(_selectedItem){
     this.consos = [];
     this.currentMonth = _selectedItem;

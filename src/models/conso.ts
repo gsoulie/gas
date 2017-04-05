@@ -1,7 +1,5 @@
 export class Conso{
-    /**
-     *
-     */
+ 
     constructor(public date: string,
                 public cost: number,
                 public qte: number,
